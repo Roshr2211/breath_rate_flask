@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breath Rate Detection</title>
+</head>
+<body>
+    <h1>Breath Rate Detection</h1>
+    <button id="count-breath-rate">Count Breath Rate</button>
+    <p id="breath-rate-display">Breath Rate: N/A</p>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#count-breath-rate').click(function () {
+                // Send a POST request to start breath rate detection
+                $.post('/run_breath_rate_detection', function (data) {
+                    // Update the 'breath-rate-display' paragraph with the received breath rate
+                    $('#breath-rate-display').text('Breath Rate: ' + data.breath_rate.toFixed(2) + ' breaths per second');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
